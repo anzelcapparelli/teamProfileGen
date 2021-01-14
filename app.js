@@ -10,6 +10,107 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const members = [];
+let id = 0;
+
+function mainMenu() {
+
+    // qudestion that either adds another employee
+
+    inquirer
+        .prompt([
+
+            {
+                type: "list",
+                message: "Add another team member?",
+                choices: ["Add new team member", "I'm done- make my html please!"],
+                name: "repeater"
+
+            }
+
+        ])
+
+        .then(answers => {
+            if (answers.repeater === "Add new team member") {
+                inquirer
+                    .prompt([
+                        {
+                            type: "list",
+                            message: "Select role of new team member:",
+                            choices: ["Engineer", "Intern"],
+                            name: "roleType"
+                        }
+                    ])
+                    .then(answers => {
+                        employeeAdder(answers.roleType);
+                    })
+            }
+
+            else {
+                // does if done
+                console.log(members);
+            }
+        })
+
+        .catch(error => {
+            if (error.isTtyError) {
+                // Prompt couldn't be rendered in the current environment
+            } else {
+                // Something else when wrong
+                console.error(error);
+            }
+        });
+
+}
+
+
+function employeeAdder(role) {
+
+    // start out with manager? might be better to do manager as separate...
+    // ask questions, add info to employee arr, then
+    id++;
+
+    inquirer
+        .prompt([
+
+            {
+                type: "input",
+                message: `Enter name for ${role}`,
+                name: "name"
+            },
+
+            // unique(role)         <-- returns an object that asks a specialized function, based on which role it is
+
+            // ================================================================================================
+            // add additional questions! different questions based on diff role vals
+            // enter email, then enter unique
+
+        ])
+        .then(answers => {
+            // put into appropriate constructor!
+            members.push(answers);
+            mainMenu();
+        })
+
+        .catch(error => {
+            if (error.isTtyError) {
+                // Prompt couldn't be rendered in the current environment
+            } else {
+                // Something else when wrong
+                console.error(error);
+            }
+        });
+
+}
+
+
+employeeAdder("Manager");
+
+// as initializer, call employeeAdder with 
+
+
+// ================================================================================================
+// instructions
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
