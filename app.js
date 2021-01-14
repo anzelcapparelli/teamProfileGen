@@ -49,6 +49,10 @@ function mainMenu() {
             else {
                 // does if done
                 console.log(members);
+
+                
+                // const htmlStr = render(members);
+                fs.writeFileSync("./output/team.html", render(members));
             }
         })
 
@@ -58,6 +62,7 @@ function mainMenu() {
             } else {
                 // Something else when wrong
                 console.error(error);
+
             }
         });
 
@@ -106,16 +111,12 @@ function employeeAdder(role) {
                 name: "email"
             },
             uniqueQ(role)
-
-            // ================================================================================================
-            // add additional questions! different questions based on diff role vals
-            // enter email, then enter unique
+            // ^^^ asks unique question based on employee role
 
         ])
         .then(answers => {
-            // put into appropriate constructor! func(answers.name, id, answers.email, answers.unique)
 
-            function constrPikr (role) {
+            function constrPikr(role) {
                 switch (role) {
 
                     case "Manager":
@@ -126,7 +127,7 @@ function employeeAdder(role) {
 
                     default:
                         return new Intern(answers.name, id, answers.email, answers.unique);
-                        
+
                 }
             }
 
@@ -148,14 +149,8 @@ function employeeAdder(role) {
 
 employeeAdder("Manager");
 
-// as initializer, call employeeAdder with 
-
-
 // ================================================================================================
 // instructions
-
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
@@ -167,12 +162,4 @@ employeeAdder("Manager");
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
 
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
 
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
