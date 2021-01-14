@@ -114,13 +114,26 @@ function employeeAdder(role) {
         ])
         .then(answers => {
             // put into appropriate constructor! func(answers.name, id, answers.email, answers.unique)
-            members.push(answers);
 
-            // members.push(approp_func(answers.name, id, answers.email, answers.unique));
+            function constrPikr (role) {
+                switch (role) {
 
+                    case "Manager":
+                        return new Manager(answers.name, id, answers.email, answers.unique);
+
+                    case "Engineer":
+                        return new Engineer(answers.name, id, answers.email, answers.unique);
+
+                    default:
+                        return new Intern(answers.name, id, answers.email, answers.unique);
+                        
+                }
+            }
+
+            members.push(constrPikr(role));
             mainMenu();
-        })
 
+        })
         .catch(error => {
             if (error.isTtyError) {
                 // Prompt couldn't be rendered in the current environment
