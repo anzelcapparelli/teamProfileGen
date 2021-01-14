@@ -63,6 +63,16 @@ function mainMenu() {
 
 }
 
+function uniqueQ(role){
+switch (role) {
+    case value:
+        
+        break;
+
+    default:
+        break;
+}
+}
 
 function employeeAdder(role) {
 
@@ -75,8 +85,13 @@ function employeeAdder(role) {
 
             {
                 type: "input",
-                message: `Enter name for ${role}`,
+                message: `Please enter name for ${role}:`,
                 name: "name"
+            },
+            {
+                type: "input",
+                message: `Please enter email for ${role}:`,
+                name: "email"
             },
 
             // unique(role)         <-- returns an object that asks a specialized function, based on which role it is
@@ -87,8 +102,11 @@ function employeeAdder(role) {
 
         ])
         .then(answers => {
-            // put into appropriate constructor!
+            // put into appropriate constructor! func(answers.name, id, answers.email)
             members.push(answers);
+            
+            // members.push(approp_func(answers.name, id, answers.email, answers.unique));
+
             mainMenu();
         })
 
