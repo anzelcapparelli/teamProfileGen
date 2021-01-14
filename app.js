@@ -63,20 +63,32 @@ function mainMenu() {
 
 }
 
-function uniqueQ(role){
-switch (role) {
-    case value:
-        
-        break;
+function uniqueQ(role) {
+    switch (role) {
+        case "Manager":
+            return {
+                type: "input",
+                message: `Please enter office number for ${role}:`,
+                name: "unique"
+            };
+        case "Engineer":
+            return {
+                type: "input",
+                message: `Please enter github username for ${role}:`,
+                name: "unique"
+            };
+        default:
+            return {
+                type: "input",
+                message: `Please enter school for ${role}:`,
+                name: "unique"
+            };
 
-    default:
-        break;
-}
+    }
 }
 
 function employeeAdder(role) {
 
-    // start out with manager? might be better to do manager as separate...
     // ask questions, add info to employee arr, then
     id++;
 
@@ -93,8 +105,7 @@ function employeeAdder(role) {
                 message: `Please enter email for ${role}:`,
                 name: "email"
             },
-
-            // unique(role)         <-- returns an object that asks a specialized function, based on which role it is
+            uniqueQ(role)
 
             // ================================================================================================
             // add additional questions! different questions based on diff role vals
@@ -102,9 +113,9 @@ function employeeAdder(role) {
 
         ])
         .then(answers => {
-            // put into appropriate constructor! func(answers.name, id, answers.email)
+            // put into appropriate constructor! func(answers.name, id, answers.email, answers.unique)
             members.push(answers);
-            
+
             // members.push(approp_func(answers.name, id, answers.email, answers.unique));
 
             mainMenu();
