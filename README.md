@@ -2,6 +2,11 @@
 
 ![License](https://img.shields.io/badge/License-MIT-informational)
 
+
+![Sample Generated HTML](./images/genHTMLDemo.jpg)
+
+Github App Repository Page: https://github.com/anzelcapparelli/teamProfileGen
+
 ## Table of contents
 
 - [Description](#Descriptionn)
@@ -30,6 +35,10 @@ in preferred terminal, run:
 `node index.js`
 
 Then answer the prompts that appear in the terminal. The 'arrow keys' navigate, and the 'spacebar' selects a choice on the select-one questions.
+
+Animated Demonstration:
+
+![Demo GIF](./images/teamProfileGen.gif)
 
 ## Testing
 
